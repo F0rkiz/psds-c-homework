@@ -1,4 +1,5 @@
 #include "cstack.h"
+
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
@@ -68,7 +69,8 @@ unsigned int stack_size(const hstack_t hstack)
     return stack_valid_handler(hstack) ? stacks[hstack].count : 0;
 }
 
-void stack_push(const hstack_t hstack, const void* data_in, const unsigned int size)
+void
+stack_push(const hstack_t hstack, const void* data_in, const unsigned int size)
 {
     if (!stack_valid_handler(hstack) || data_in == NULL || size == 0)
     {
@@ -86,7 +88,8 @@ void stack_push(const hstack_t hstack, const void* data_in, const unsigned int s
     ++stacks[hstack].count;
 }
 
-unsigned int stack_pop(const hstack_t hstack, void* data_out, const unsigned int size)
+unsigned int
+stack_pop(const hstack_t hstack, void* data_out, const unsigned int size)
 {
     if (!stack_valid_handler(hstack) || data_out == NULL ||
         stacks[hstack].top == NULL || size < stacks[hstack].top->size)
@@ -114,7 +117,8 @@ unsigned int stack_top_size(const hstack_t hstack)
 hstack_t stack_get_all(void)
 {
     hstack_t new_stack = stack_new();
-    if (new_stack < 0) return -1;
+    if (new_stack < 0)
+        return -1;
 
     for (hstack_t i = 0; i < MAX_STACKS; ++i)
     {
